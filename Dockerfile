@@ -1,6 +1,11 @@
 FROM debian:jessie
 
-ENV AUTHORIZED_KEYS_FILE=/authorized_keys
+# This will be provided via a volume mount:
+ENV AUTHORIZED_KEYS_SOURCE_FILE=/AUTHORIZED_KEYS
+# As we can't change the ownership of a volume mount in the entrypoint.sh,
+# we'll copy $AUTHORIZED_KEYS_SOURCE_FILE to $AUTHORIZED_KEYS_TARGET_FILE
+ENV AUTHORIZED_KEYS_TARGET_FILE=/authorized_keys
+
 ENV USER_NAME=mydata
 ENV GROUP_NAME=mydata
 
