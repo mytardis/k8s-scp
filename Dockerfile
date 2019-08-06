@@ -10,7 +10,8 @@ ENV USER_NAME=mydata
 ENV GROUP_NAME=mydata
 
 RUN apt-get update \
- && apt-get install -y openssh-server \
+ && apt-get install -y openssh-server rsync \
+ && rm -f /etc/ssh/ssh_host_* \
  && groupadd $GROUP_NAME \
  && useradd --create-home --shell /bin/bash $USER_NAME -g $GROUP_NAME \
  && echo "AuthorizedKeysFile /authorized_keys" >>/etc/ssh/sshd_config \

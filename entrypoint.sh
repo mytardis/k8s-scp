@@ -1,10 +1,14 @@
 #!/bin/bash
 
+# Copy shared keys from S3 bucket
+cp /data/scp/ssh_host_* /etc/ssh/
+chmod 0600 /etc/ssh/ssh_host_*
+if [ ! -f /etc/ssh/ssh_host_key ]; then
 # This won't be executed if keys already exist (i.e. from a volume)
-ssh-keygen -A
-
-groupmod --non-unique --gid "$GROUPID" "$GROUP_NAME"
-usermod --non-unique --uid "$USERID" --gid "$GROUPID" "$USER_NAME"
+  echo "Generating SSH keys..."
+  ssh-keygen -A
+  cp /etc/ssh/ssh_host_* /data/scp/
+fi
 
 # Authorized keys from scp-config should be volume mounted at
 # $AUTHORIZED_KEYS_SOURCE_FILE which defaults to /AUTHORIZED_KEYS
