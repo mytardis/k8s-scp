@@ -1,0 +1,12 @@
+PasswordAuthentication no
+
+ChallengeResponseAuthentication no
+
+UsePAM yes
+
+AuthorizedKeysFile /authorized_keys
+
+ClientAliveInterval 120
+ClientAliveCountMax 720
+
+Subsystem sftp /usr/lib/ssh/sftp-server
