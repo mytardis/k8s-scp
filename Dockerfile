@@ -58,4 +58,5 @@ COPY sshd_config /etc/ssh/
 EXPOSE 22
 
 COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
