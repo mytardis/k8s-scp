@@ -1,8 +1,11 @@
+AddressFamily inet
+
 PasswordAuthentication no
 
 ChallengeResponseAuthentication no
 
 UsePAM yes
+UseDNS no
 
 AuthorizedKeysFile /authorized_keys
 
