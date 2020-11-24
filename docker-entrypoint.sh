@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+set -e
 
 # Copy shared keys from S3 bucket
 cp /data/scp/ssh_host_* /etc/ssh/ || echo "Can't find SSH keys."
@@ -21,5 +23,4 @@ cp $AUTHORIZED_KEYS_SOURCE_FILE $AUTHORIZED_KEYS_TARGET_FILE
 chown "${USER_NAME}:${GROUP_NAME}" $AUTHORIZED_KEYS_TARGET_FILE
 chmod 600 $AUTHORIZED_KEYS_TARGET_FILE
 
-# Run sshd on container start
-exec /usr/sbin/sshd -D -e
+exec "$@"
